@@ -14,11 +14,14 @@ async function index (req, res) {
 }
 
 async function show (req, res) {
+    let currentUserId = req.user._id
     let userId = req.params.id
+    currentUserId = currentUserId.toString();
     const tweets = await Tweet.find({user: userId}).sort({createdAt: -1})
     res.render('profiles/show', {
         tweets,
-        userId
+        userId,
+        currentUserId
     })
 }
 

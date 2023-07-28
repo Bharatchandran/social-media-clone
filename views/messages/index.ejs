@@ -1,7 +1,22 @@
 <%- include('../partials/header')%>
-<form action="/messages/<%=userId%>>" method="POST">
+<form action="/messages/<%=userId%>" method="POST">
     <input type="text" name="message" placeholder="Enter message">
 <button type="submit">Send</button>
 
+
+
+
 </form>
+<% if(messages) { %>
+    <% messages.forEach((message) => {%>
+        <div class="tweet-container">
+
+            <img src="<%=message.user.avatar%>" alt="">
+            <%=message.user.name%>
+            <p><%=message.message%></p>
+            <span><%=message.createdAt.getDate()%></span>/<span><%=message.createdAt.getMonth() + 1%></span>/<span><%=message.createdAt.getFullYear()%></span>
+
+    </div>
+        <% })%>
+        <% }%>
 <%- include('../partials/footer')%>

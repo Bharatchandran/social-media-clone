@@ -10,7 +10,7 @@ async function create (req, res) {
     req.body.userName = req.user.name;
     req.body.userAvatar = req.user.avatar;
     tweet.reply.push(req.body)
-
+    
     await tweet.save();
     res.redirect(`/tweets/${tweet._id}`)
 }

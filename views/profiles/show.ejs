@@ -2,7 +2,10 @@
 
 
 <%if(tweets) { %>
-    <a href="/messages/<%=userId%>">Message</a>
+    <%  if(userId !== currentUserId) {%>
+        <a href="/messages/<%=userId%>">Message</a>
+
+        <%  }%>
     <table>
         <% tweets.forEach(tweet => { %>
             <tr class="tweet-container">
