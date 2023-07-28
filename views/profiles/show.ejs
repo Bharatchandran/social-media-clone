@@ -1,0 +1,22 @@
+<%- include('../partials/header')%>
+
+
+<%if(tweets) { %>
+    <a href="/messages/<%=userId%>">Message</a>
+    <table>
+        <% tweets.forEach(tweet => { %>
+            <tr class="tweet-container">
+            <td>
+
+                <img src="<%=tweet.userAvatar%>" alt="">
+                <%=tweet.userName%>
+                <%=tweet.content%>
+                <span><%=tweet.createdAt.getDate()%></span>/<span><%=tweet.createdAt.getMonth() + 1%></span>/<span><%=tweet.createdAt.getFullYear()%></span>
+
+                <a href="">comment</a>
+            </td>
+        </tr>
+       <% }) %>
+    </table>
+<%}%>
+<%- include('../partials/footer')%>

@@ -1,0 +1,27 @@
+<%- include('../partials/header')%>
+<div class="tweet-post">
+    <img class="user-post-img" src="<%=avatar%>" alt="" referrerpolicy="no-referrer"> 
+    <form action="/tweets" method="POST">
+        <input class="tweet-input" type="text" name="content" placeholder="Enter Tweet"> <br>
+        <button type="submit">Tweet</button>
+    </form>
+</div>
+
+
+<%if(tweets) { %>
+  
+        <% tweets.forEach(tweet => { %>
+            <div class="tweet-container">
+
+                <img src="<%=tweet.userAvatar%>" alt="">
+                <%=tweet.userName%>
+                <%=tweet.content%>
+                <span><%=tweet.createdAt.getDate()%></span>/<span><%=tweet.createdAt.getMonth() + 1%></span>/<span><%=tweet.createdAt.getFullYear()%></span>
+
+                <a href="/tweets/<%=tweet._id%>">comment</a>
+        </div>
+       <% }) %>
+<%}%>
+
+
+<%- include('../partials/footer')%>

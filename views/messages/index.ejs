@@ -1,0 +1,7 @@
+<%- include('../partials/header')%>
+<form action="/messages/<%=userId%>>" method="POST">
+    <input type="text" name="message" placeholder="Enter message">
+<button type="submit">Send</button>
+
+</form>
+<%- include('../partials/footer')%>
