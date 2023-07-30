@@ -1,27 +1,27 @@
 <%- include('../partials/header')%>
-<div class="tweet-post">
-    <img class="user-post-img" src="<%=avatar%>" alt="" referrerpolicy="no-referrer"> 
-    <form action="/tweets" method="POST">
-        <input class="tweet-input" type="text" name="content" placeholder="Enter Tweet"> <br>
-        <button type="submit">Tweet</button>
-    </form>
-</div>
-
-
-<%if(tweets) { %>
+<div class="relative mt-6 flex w-98 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md dark:bg-slate-800">
+      <div class="p-4 flex items-center">
+          <img class="mb-2 h-12 w-12 rounded-full inline-block" src="<%=avatar%>" alt="">
+       
+      <form  class="w-11/12 ml-4" action="/tweets" method="POST">
+      <div class="w-full mt-4 mb-2 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+          <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+              <label for="comment" class="sr-only">Your comment</label>
+              <textarea id="comment" name="content" placeholder="Enter Tweet" rows="4" class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 outline-0"  required></textarea>
+          </div>
+          
+      </div>
   
-        <% tweets.forEach(tweet => { %>
-            <div class="tweet-container">
+      </div>
+      <div class="p-2 pt-0 self-end mr-2">
+       
+         <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+             Tweet
+         </button>
+      </div>
+   </form>
+    </div>
 
-                <img src="<%=tweet.userAvatar%>" alt="">
-                <%=tweet.userName%>
-                <%=tweet.content%>
-                <span><%=tweet.createdAt.getDate()%></span>/<span><%=tweet.createdAt.getMonth() + 1%></span>/<span><%=tweet.createdAt.getFullYear()%></span>
-
-                <a href="/tweets/<%=tweet._id%>">comment</a>
-        </div>
-       <% }) %>
-<%}%>
-
+    <%- include('../partials/tweetContainer') %>
 
 <%- include('../partials/footer')%>

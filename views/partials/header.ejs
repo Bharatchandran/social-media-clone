@@ -3,16 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!-- <link rel='stylesheet' href='/stylesheets/style.css' /> -->
+    <!-- <link href="/dist/output.css" rel="stylesheet"> -->
     <title>Document</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+
 </head>
-<body>
-    <div class="container">
-        <div class="navbar">
-            <a href="/tweets">Home</a>
-            <a href="/explore">Explore</a>
-            <a href="/profiles">Profile</a>
-            <a href="/logout">Logout</a>
+<body class="bg-slate-950   " >
+    <div class="grid grid-cols-6 gap-2 bg-slate-950   ">
+        <div class="col-span-1 	flex flex-col   justify-center  items-center  text-white border-r-2 border-white  fixed w-1/6  h-screen text-2xl">
+            <a class="my-2" href="/tweets"><span class=" text-5xl p-4 material-symbols-outlined">
+                home
+                </span></a>
+            <a class="my-2" href="/explore"><span class="text-5xl p-4 material-symbols-outlined">
+                search
+                </span></a>
+            <a class="my-2" href="/profiles"><span class="text-5xl p-4 material-symbols-outlined">
+                person
+                </span></a>
+                <a href="/messages"><span class="text-5xl p-4 material-symbols-outlined">
+                    chat
+                    </span></a>
+            <a class="my-2" href="/logout"><span class="text-5xl p-4 material-symbols-outlined">
+                logout
+                </span></a>
+
+            
+            
+                
         </div>
-        <div class="main">
-            <h1>Hello</h1>
+        <div class="main col-span-3 col-start-2 col-end-5 ml-12 ">
+            <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400"><%=title%></span></h1>

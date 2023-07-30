@@ -1,19 +1,23 @@
 const Tweet = require('../models/tweet')
 
+
 module.exports = {
     index,
     create,
     show
 }
 
+
 async function index(req, res) {
     const tweets = await Tweet.find({}).sort({updatedAt: -1})
     const avatar = req.user.avatar;
-  
+   
+
 
     res.render('tweets/index', {
         tweets,
-        avatar
+        avatar,
+        title: "Home"
     })
 }
 
@@ -29,12 +33,14 @@ async function show (req, res) {
     const tweet = await Tweet.findById(req.params.id);
     let reply = await tweet.reply;
     reply = reply.sort((a,b) => b.createdAt - a.createdAt)
+    const tweets = reply
     const tweetId = req.params.id
     const avatar = req.user.avatar;
     res.render('tweets/show',{
         tweet,
         avatar,
         tweetId,
-        reply
+        tweets,
+        title: "Replies"
     })
 }

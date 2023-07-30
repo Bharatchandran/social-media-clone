@@ -3,8 +3,28 @@ const Message = require('../models/message');
 const MessageGroup = require('../models/messageGroup');
 
 module.exports = {
+    index,
     message,
     create
+}
+
+async function index(req, res) {
+    const messageGroup = await MessageGroup.find({}).sort({createdAt : 1}).populate('user1').populate('user2')
+    let currentUser = req.user._id
+    console.log(currentUser)
+    let user;
+    // let messageTo;
+    // if(messageGroup.user1 == req.user._id){
+    //     messageTo = await User.find({user: messageGroup.user2 })
+    // } else {
+    //     messageTo = await User.findOne({user: messageGroup.user1 })
+    // }
+    res.render('messages/index', {
+        messageGroup,
+        currentUser,
+        user,
+        title: "Message"
+    })
 }
 
 async function message(req, res) {
@@ -16,11 +36,13 @@ async function message(req, res) {
         messageGroup = await MessageGroup.findOne({user1: userId, user2: currentUser});
     }
     const messages = await Message.find({messageChannel:messageGroup._id}).sort({createdAt:-1}).populate('user')
-    console.log(messages)
+    console.log(messages,"============")
     console.log(userId,"---",currentUser)
-    res.render('messages/index',{
+    res.render('messages/show',{
         userId,
-        messages
+        messages,
+        currentUser,
+        title:"Chat"
     })
 }
 

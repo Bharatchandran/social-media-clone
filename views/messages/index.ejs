@@ -1,22 +1,33 @@
 <%- include('../partials/header')%>
-<form action="/messages/<%=userId%>" method="POST">
-    <input type="text" name="message" placeholder="Enter message">
-<button type="submit">Send</button>
+<% if(messageGroup) { %>
+    <% messageGroup.forEach((message) => {%>
+      
+       <% if(currentUser.toString() === message.user1._id.toString()){%>
+            <%user = message.user2%>
+        <%} else if(currentUser.toString() === message.user2._id.toString()) {%>
+            <%user = message.user1%>
+            <% }%>
 
-
-
-
-</form>
-<% if(messages) { %>
-    <% messages.forEach((message) => {%>
-        <div class="tweet-container">
-
-            <img src="<%=message.user.avatar%>" alt="">
-            <%=message.user.name%>
-            <p><%=message.message%></p>
-            <span><%=message.createdAt.getDate()%></span>/<span><%=message.createdAt.getMonth() + 1%></span>/<span><%=message.createdAt.getFullYear()%></span>
-
+<div class="mt-16">
+<a href="/messages/<%=user._id%>" class=" hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800  dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">
+<div class="w-full max-w-2xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+   
+    <div class="flex  items-center justify-between  p-4">
+        <div class="flex   ">
+            
+        <img class="w-12 h-12  rounded-full shadow-lg" src="<%=user.avatar%>" alt="Bonnie image"/>
+        <div class="flex flex-col ml-4 ">
+        <h5 class=" text-lg font-medium text-gray-900 dark:text-white"><%=user.name%></h5>
+        <!-- <span class="text-sm text-gray-500 dark:text-gray-400"><%=user.email%></span> -->
     </div>
+    </div>
+        
+    </div>
+</div>
+</div>
+</a>
+
+
         <% })%>
         <% }%>
 <%- include('../partials/footer')%>
