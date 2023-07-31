@@ -16,13 +16,16 @@
     "express": "~4.16.1",
     "express-session": "^1.17.3",
     "http-errors": "~1.6.3",
+    "method-override": "^3.0.0",
     "mongoose": "^7.4.1",
     "morgan": "~1.9.1",
+    "node-fetch": "^2.6.12",
     "passport": "^0.6.0",
     "passport-google-oauth": "^2.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
+    "daisyui": "^3.5.0",
     "postcss": "^8.4.27",
     "tailwindcss": "^3.3.3"
   }

@@ -1,5 +1,5 @@
 <%- include('../partials/header')%>
-<div class="relative mt-6 flex w-98 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md dark:bg-slate-800">
+<div class="relative mt-6 flex w-98 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md dark:bg-slate-800 overflow-auto">
       <div class="p-4 flex items-center">
           <img class="mb-2 h-12 w-12 rounded-full inline-block" src="<%=avatar%>" alt="">
        
@@ -21,7 +21,10 @@
       </div>
    </form>
     </div>
-
     <%- include('../partials/tweetContainer') %>
+    </div>
+    <div class=" fixed h-screen right-0 col-span-2  text-white border-l-2 border-gray-600 ml-8  flex flex-col items-center   ">
+       <%-include('../partials/news')%>
+    
 
 <%- include('../partials/footer')%>
