@@ -8,21 +8,26 @@
         <span class="text-sm text-gray-500 dark:text-gray-400"><%=profile.email%></span>
         <%  if(userId !== currentUserId) {%>
             <div class="flex mt-4 space-x-3 md:mt-6">
-                <a href="/messages/<%=userId%>" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Message</a>
-               
+                <form action="/messages/<%=userId%>" method="POST">
+                <!-- <a href="/messages/<%=userId%>" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Message</a> -->
+                <button type="submit">Message</button>
+            </form>
             </div>
             <%  }%>
         
     </div>
 </div>
 
-<%if(tweets) { %>
+<!-- <%if(tweets) { %>
     <%  if(userId !== currentUserId) {%>
-        <a href="/messages/<%=userId%>">Message</a>
+        <form action="/messages/<%=userId%>" method="POST">
+            <button type="submit">Message</button>
+        </form>
+        
 
         <%  }%>
       
             <%- include('../partials/tweetContainer') %>
       
-<%}%>
+<%}%> -->
 <%- include('../partials/footer')%>
