@@ -1,6 +1,6 @@
 <%if(tweets) { %> <% tweets.forEach(tweet => { %>
 <div
-  class="relative mt-6 flex w-98 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md dark:bg-slate-800"
+  class="relative mt-6 flex w-98 flex-col rounded-xl  bg-clip-border text-gray-700 shadow-md bg-slate-800"
 >
   <div class="p-6">
     <div class="flex justify-between">
@@ -30,13 +30,13 @@
         <!-- <h1 class="text-white text-4xl"><%=tweet._id%></h1> -->
 
         <details class="dropdown ">
-          <summary class="m-1 dark:bg-slate-800 border-none  btn"><span class="material-symbols-outlined">
+          <summary class="m-1 bg-slate-800 border-none  btn"><span class="material-symbols-outlined">
             expand_more
             </span></summary>
           <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
             <li><a
               href="/<%=editPath%>/<%=tweet._id%>/edit"
-              class=" px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white flex justify-between"
+              class=" px-4 py-2  hover:bg-gray-600 hover:text-white flex justify-between"
               >Edit  <span class="material-symbols-outlined"> edit </span></a
             ></li>
             <li><form
@@ -45,7 +45,7 @@
             >
                 <button
                   type="submit"
-                  class=" w-40  dark:hover:bg-gray-600 dark:hover:text-white flex  justify-between "
+                  class=" w-40  hover:bg-gray-600 hover:text-white flex  justify-between "
                 >
                   Delete
                   <span class="material-symbols-outlined"> delete </span>
@@ -56,70 +56,7 @@
         
 
 
-        <!-- <button
-          id="multiLevelDropdownButton"
-          data-dropdown-toggle="dropdown"
-          class="text-white text-sm px-5 py-2.5 text-center inline-flex items-center"
-          type="button"
-        >
-          <svg
-            class="w-2.5 h-2.5 ml-2.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 10 6"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="m1 1 4 4 4-4"
-            />
-          </svg>
-        </button> -->
-
-        
-        <!-- Dropdown menu -->
-        <!-- <div
-            id="dropdown"
-            class="z-10  bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
-          >
-      <h1 class="text-white text-4xl"><%=tweet._id%></h1>
-
-            <ul
-              class="py-2 text-sm text-gray-700 dark:text-gray-200"
-              aria-labelledby="multiLevelDropdownButton"
-            >
-           
-              <li>
-                
-                <a
-                  href="/<%=editPath%>/<%=tweet._id%>/edit"
-                  class=" px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white flex justify-between"
-                  >Edit <%=tweet._id%> <span class="material-symbols-outlined"> edit </span></a
-                >
-              </li>
-        
-  
-              <li>
-                <form
-                  action="<%=deleteHref%>/delete/<%=tweet._id%>?_method=DELETE"
-                  method="POST"
-                >
-                  <div>
-                    <button
-                      type="submit"
-                      class=" px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white flex justify-between w-full"
-                    >
-                      Delete<%=tweet._id%>
-                      <span class="material-symbols-outlined"> delete </span>
-                    </button>
-                  </div>
-                </form>
-              </li>
-            </ul>
-          </div> -->
+       
       </div>
       <%}%>
     </div>

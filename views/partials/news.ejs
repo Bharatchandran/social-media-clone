@@ -12,20 +12,18 @@
   </div>
 </div> -->
 <div class="h-[80vh]"> 
-<div class="  w-[480px]  p-4 mt-[8vh]   border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700 h-[80%] min-h-[500px]  ">
+<div class="  w-[480px]  p-4 mt-[8vh]   border-gray-200 rounded-lg shadow sm:p-8  h-[80%] min-h-[500px]  ">
     <div class="flex items-center justify-center mb-8  ">
-        <h2 class=" text-2xl  font-bold leading-none text-gray-900 dark:text-blue-800 text-center">NEWS</h2>
-        <!-- <h1 class="text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Get back to growth with <span class="text-blue-600 dark:text-blue-500">the world's #1</span> CRM.</h1> -->
+        <h2 class=" text-2xl  font-bold leading-none  text-blue-800 text-center">NEWS</h2>
+       
         
    </div>
-   <!-- <div class="flow-root  h-3/4 bg-black"> -->
-    <div role="list" class="divide-y divide-gray-200 dark:divide-gray-700 h-[90%] overflow-auto rounded-lg ">
+    <div role="list" class="divide-y  divide-gray-700 h-[90%] overflow-y-auto rounded-lg border ">
         <%getNews.forEach(news => {%>
-            <a href="<%=news.url%>" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+            <a href="<%=news.url%>" class="flex flex-col items-center  border  rounded-lg shadow md:flex-row md:max-w-xl  border-gray-700 bg-gray-800 hover:bg-gray-700">
                 <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src="<%=news.urlToImage%>" alt="">
                 <div class="flex flex-col justify-between p-4 leading-normal">
-                    <h5 class="mb-2 text-sm font-bold tracking-tight text-gray-900 dark:text-white"><%=news.title%>-<%=news.author%></h5>
-                    <!-- <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%=news.description%></p> -->
+                    <h5 class="mb-2 text-sm font-bold tracking-tight  text-white"><%=news.title%>-<%=news.author%></h5>
                 </div>
             </a>
         <%})%>
