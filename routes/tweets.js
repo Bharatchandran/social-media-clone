@@ -13,3 +13,4 @@ router.post('/', ensureLoggedIn, tweetsController.create)
 router.delete('/delete/:id',ensureLoggedIn, tweetsController.delete)
 router.put('/:id',tweetsController.update)
 module.exports = router;
+// 2xl:w-[480px]
