@@ -11,15 +11,7 @@ module.exports = {
 
 async function index(req, res) {
     const messageGroup = await MessageGroup.find({}).sort({createdAt : 1}).populate('user1').populate('user2')
-    const messageTest = messageGroup.find(el => {
-        if(el.user1.name === "BHARAT"){
-         return el
-        } 
-        if(el.user2.name === "BHARAT"){
-            return el
-        }
-    } )
-    
+    console.log(messageGroup,"====")
     let currentUser = req.user._id
     let user;
     // const populateMsg = await MessageGroup.find({}).sort({createdAt : 1}).populate('user1').populate('user2')

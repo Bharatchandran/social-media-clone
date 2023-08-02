@@ -1,11 +1,12 @@
 <%- include('../partials/header')%>
-<div class="w-full max-w-2xl p-4 border border-gray-200 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700  ">
+<div class="  p-4 border border-gray-200 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700  ">
 <%-include('../partials/searchbar')%>
 <div class="flow-root">
     <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
 <% if(messageGroup) { %>
     
     <% messageGroup.forEach((message) => {%>
+        <% if(message.user1._id.toString() === currentUser.toString() ||message.user2._id.toString() === currentUser.toString() ) { %>
       
        <% if(currentUser.toString() === message.user1._id.toString()){%>
             <%user = message.user2%>
@@ -35,8 +36,10 @@
 </a>
 
 
-        <% })%>
         
+        
+        <% }%>
+        <% })%>
         <% }%>
     </ul>
 </div>

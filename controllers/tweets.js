@@ -1,5 +1,6 @@
 const Tweet = require('../models/tweet')
 const fetch = require('node-fetch')
+const User = require('../models/user')
 const token = process.env.NEWS_API;
 
 module.exports = {
@@ -8,19 +9,21 @@ module.exports = {
     show,
     delete: deleteTweet,
     update,
-    edit
+    edit,
 }
 
 
 async function index(req, res) {
     const tweets = await Tweet.find({}).sort({createdAt: -1})
+    const users = await User.find({name: req.query.name})
+
     const avatar = req.user.avatar;
     const view = "index"
     const deleteHref = "/tweets"
     const redirect = '/tweets'
     const currentUserId = req.user._id
     const editPath = "tweets"
-
+    const formPath = "/tweets"
     // 
     let getNews = await fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${token}`)
     .then(res=> res.json())
@@ -36,7 +39,9 @@ getNews = getNews.articles
         deleteHref,
         currentUserId,
         getNews,
-        editPath
+        editPath,
+        formPath,
+        users
     })
 }
 
@@ -108,3 +113,4 @@ async function update(req, res) {
     await Tweet.findByIdAndUpdate(req.params.id,req.body)
     res.redirect('/tweets');
 }
+

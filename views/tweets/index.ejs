@@ -23,8 +23,17 @@
     </div>
     <%- include('../partials/tweetContainer') %>
     </div>
-    <div class=" fixed h-screen right-0 col-span-2  text-white border-l-2 border-gray-600 ml-8  flex flex-col items-center   ">
+    <div class="  invisible xl:visible  text-white border-l-2 border-gray-600 ml-8 grid grid-row-6 col-span-2 h-screen sticky top-0  ">
+        
+        <div class = "row-span-3   flex justify-center items-center " >
        <%-include('../partials/news')%>
-    
+    </div>
+        <div class = "row-span-1  flex justify-center items-center mt-10 " >
+            <%- include('../partials/miniSearch')%>
+    </div>
+        <div class = "row-span-1" >
+    </div>
+        <div class = "row-span-1" >
+    </div>
 
 <%- include('../partials/footer')%>
