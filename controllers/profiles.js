@@ -1,5 +1,7 @@
 const Tweet = require('../models/tweet')
 const User = require('../models/user')
+const Like = require('../models/like')
+
 module.exports = {
     index,
     show,
@@ -13,6 +15,7 @@ async function index (req, res) {
     const view = "index"
     const redirect = '/profiles'
     editPath ="tweet"
+    const like = await Like.find({})
     
     res.render('profiles/index', {
         tweets,
@@ -21,7 +24,8 @@ async function index (req, res) {
         deleteHref,
         view,
         currentUserId,
-        editPath
+        editPath,
+        like
     })
 }
 
@@ -34,6 +38,8 @@ async function show (req, res) {
     const deleteHref = "/tweets"
     const view = "index"
     editPath ="tweet"
+    const like = await Like.find({})
+
 
 
     res.render('profiles/show', {
@@ -44,7 +50,8 @@ async function show (req, res) {
         title: "Profile",
         deleteHref,
         view,
-        editPath
+        editPath,
+        like
     })
 }
 

@@ -18,11 +18,7 @@ async function index(req, res) {
     const tweets = await Tweet.find({}).sort({createdAt: -1})
     const users = await User.find({name: req.query.name})
     const like = await Like.find({})
-     const findLike = like.find(el => {
-        
-        if(el.user.toString() === req.user._id.toString()) return el
-     });
-    console.log(findLike,"find")
+     
     
     const avatar = req.user.avatar;
     const view = "index"
@@ -63,6 +59,7 @@ async function create(req,res) {
 
 async function show (req, res) {
     const tweet = await Tweet.findById(req.params.id);
+    const like = await Like.find({})
     let reply = await tweet.reply;
     reply = reply.sort((a,b) => b.createdAt - a.createdAt)
     const tweets = reply
@@ -84,7 +81,8 @@ async function show (req, res) {
         deleteHref,
         currentUserId,
         tweeterId,
-        editPath
+        editPath,
+        like
         
     })
 }

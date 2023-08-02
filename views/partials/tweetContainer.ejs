@@ -89,14 +89,17 @@
       <%if(findLike ){%>
       <svg class="fill-red-700 " xmlns="http://www.w3.org/2000/svg" width="24" height="28" viewBox="0 0 24 24"><path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/></svg>
     <%} else{%>
-      <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="28" viewBox="0 0 24 24"><path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/></svg>
+      <svg class=" "  xmlns="http://www.w3.org/2000/svg" width="24" height="28" viewBox="0 0 24 24"><path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/></svg>
     <%}%>
     <%let numberOfLikes = 0%>%>
     <%like.forEach(el=>{%>
       <%if(el.tweet.toString() === tweet._id.toString()) numberOfLikes+=1;%>
     <%})%>
+    <%if(findLike ){%>
     <h1 class="p-2 text-red-700"><%=numberOfLikes%></h1>
-
+    <%} else{%>
+      <h1 class="p-2 text-white"><%=numberOfLikes%></h1>
+      <%}%>
       </button>
     </div>
       </form>
