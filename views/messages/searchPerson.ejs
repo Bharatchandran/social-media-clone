@@ -3,6 +3,8 @@
 <%-include('../partials/searchbar')%>
     <div class="flow-root">
     <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+        <% if(messageGroup) { %>
+            
 <% if(currentUser.toString() === messageGroup.user1._id.toString()){%>
     <%user = messageGroup.user2%>
 <%} else if(currentUser.toString() === messageGroup.user2._id.toString()) {%>
@@ -28,6 +30,7 @@
 </div>
 </li>
 </a>
+<% }%>
 </ul>
 
 </div>

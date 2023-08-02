@@ -41,20 +41,21 @@ async function index(req, res) {
 async function findPeople(req, res) {
     console.log(req.query.name)
     let messageGroup = await MessageGroup.find({}).sort({createdAt : 1}).populate('user1').populate('user2')
-    
+    const queryName = req.query.name
 
     const messageTest = messageGroup.find(el => {
-        if(el.user1.name === req.query.name){
+        if(el.user1.name === req.query.name && el.user2.name === req.user.name ){
          return el
         } 
-        if(el.user2.name === req.query.name){
+        if(el.user2.name === req.query.name  && el.user1.name === req.user.name){
             return el
         }
     } )
+    
     messageGroup = messageTest
     let currentUser = req.user._id
     let user;
-    console.log(messageGroup,"====",messageTest)
+    console.log(messageGroup,"====")
     // let messageTo;
     // if(messageGroup.user1 == req.user._id){
     //     messageTo = await User.find({user: messageGroup.user2 })
@@ -67,7 +68,8 @@ async function findPeople(req, res) {
         currentUser,
         user,
         title: "Message",
-        formPath
+        formPath,
+        queryName
     })
 }
 
