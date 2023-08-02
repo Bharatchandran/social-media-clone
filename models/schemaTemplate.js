@@ -13,7 +13,6 @@ module.exports={
     },
     userName: String,
     userAvatar: String,
-   
     createdAt: {
         type: Date,
         default:function() {

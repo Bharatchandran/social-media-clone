@@ -69,34 +69,57 @@
     </div>
   </div>
   <%if(view === "index") { %>
-  <div class="p-6 pt-0">
+  <div class="p-6 pt-0 ml-[57px] flex justify-end">
+    
+    <form 
+    action="/tweets/like/<%=tweet._id%>" method="POST"
+    class="!font-medium !text-blue-gray-900 !transition-colors hover:!text-pink-500 "
+    
+  > 
+ <div class="flex items-center">
+        <button
+        class="flex justify-end select-none items-center  rounded-lg py-2 px-2 text-center align-middle font-sans text-xs font-bold uppercase text-blue-600 transition-all hover:bg-red-500/10 active:bg-red-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        type="submit"
+        data-ripple-dark="true"
+      >
+     <% const findLike = like.find(el => {%>
+      
+      <%  if(el.user.toString() === currentUserId.toString() && el.tweet.toString() === tweet._id.toString()) return el%>
+      <% });%>
+      <%if(findLike ){%>
+      <svg class="fill-red-700 " xmlns="http://www.w3.org/2000/svg" width="24" height="28" viewBox="0 0 24 24"><path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/></svg>
+    <%} else{%>
+      <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="28" viewBox="0 0 24 24"><path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/></svg>
+    <%}%>
+    <%let numberOfLikes = 0%>%>
+    <%like.forEach(el=>{%>
+      <%if(el.tweet.toString() === tweet._id.toString()) numberOfLikes+=1;%>
+    <%})%>
+    <h1 class="p-2 text-red-700"><%=numberOfLikes%></h1>
+
+      </button>
+    </div>
+      </form>
     <a
-      class="!font-medium !text-blue-gray-900 !transition-colors hover:!text-pink-500 flex justify-end"
+      class="!font-medium !text-blue-gray-900 !transition-colors hover:!text-blue-500 flex justify-end"
       href="/tweets/<%=tweet._id%>"
-    >
+    > 
+  
+
+
       <button
-        class="flex justify-end select-none items-center gap-2 rounded-lg py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-pink-500 transition-all hover:bg-pink-500/10 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        class="flex justify-end select-none items-center gap-2 rounded-lg py-2 px-2 text-center align-middle font-sans text-xs font-bold uppercase text-blue-500 transition-all hover:bg-blue-500/10 active:bg-blue-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
         type="button"
         data-ripple-dark="true"
       >
+      <span class="material-symbols-outlined">
         comment
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="2"
-          stroke="currentColor"
-          aria-hidden="true"
-          class="h-4 w-4"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-          ></path>
-        </svg>
+        </span>
+        <%let numberOfComments = tweet.reply.length%>
+        <%=numberOfComments%>        
       </button>
     </a>
+
   </div>
   <% } %>
 </div>

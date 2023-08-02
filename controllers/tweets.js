@@ -1,8 +1,8 @@
 const Tweet = require('../models/tweet')
 const fetch = require('node-fetch')
 const User = require('../models/user')
+const Like = require('../models/like')
 const token = process.env.NEWS_API;
-
 module.exports = {
     index,
     create,
@@ -10,13 +10,20 @@ module.exports = {
     delete: deleteTweet,
     update,
     edit,
+    like
 }
 
 
 async function index(req, res) {
     const tweets = await Tweet.find({}).sort({createdAt: -1})
     const users = await User.find({name: req.query.name})
-
+    const like = await Like.find({})
+     const findLike = like.find(el => {
+        
+        if(el.user.toString() === req.user._id.toString()) return el
+     });
+    console.log(findLike,"find")
+    
     const avatar = req.user.avatar;
     const view = "index"
     const deleteHref = "/tweets"
@@ -41,7 +48,8 @@ getNews = getNews.articles
         getNews,
         editPath,
         formPath,
-        users
+        users,
+        like
     })
 }
 
@@ -93,6 +101,7 @@ async function edit (req, res) {
     const view = "index"
     const avatar = req.user.avatar;
     const tweet = await Tweet.findOne({_id: req.params.id})
+    console.log(tweet)
     const tweetId= req.params.id.toString();
     const editPath = "tweets"
     const tweetContent = tweet.content
@@ -114,3 +123,17 @@ async function update(req, res) {
     res.redirect('/tweets');
 }
 
+async function like(req, res) {
+    const like = await Like.findOne({tweet: req.params.id, user:req.user._id.toString()});
+    req.body.user = req.user._id
+    console.log(req.user._id)
+    req.body.tweet = req.params.id
+    console.log(like,"exist")
+    // console.log(req.body)
+    if(!like) {
+        await Like.create(req.body)
+        // console.log(like,"test======")
+    }
+    res.redirect('/tweets')    
+
+}

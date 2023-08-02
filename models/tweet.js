@@ -7,6 +7,13 @@ const schemaTemplate = require('./schemaTemplate');
 const replySchema = new Schema( schemaTemplate )
 let test = {reply:[replySchema]}
 Object.assign(schemaTemplate,test)
+// const likeSchema = new Schema ({
+//     user: {
+//         type: Schema.Types.ObjectId,
+//         ref: 'User'
+//     }
+// })
+// Object.assign(schemaTemplate, likeSchema);
 const tweetSchema = new Schema(schemaTemplate, {timestamps: true})
 
 // const tweetSchema = new Schema(
