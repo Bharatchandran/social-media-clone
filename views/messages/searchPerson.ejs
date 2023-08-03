@@ -1,38 +1,38 @@
 <%- include('../partials/header')%>
 <div class=" p-4 border  rounded-lg shadow  bg-gray-800 border-gray-700  ">
-<%-include('../partials/searchbar')%>
+    <%-include('../partials/searchbar')%>
     <div class="flow-root">
     <ul role="list" class="divide-y  divide-gray-700">
         <% if(messageGroup) { %>
             
-<% if(currentUser.toString() === messageGroup.user1._id.toString()){%>
-    <%user = messageGroup.user2%>
-<%} else if(currentUser.toString() === messageGroup.user2._id.toString()) {%>
-    <%user = messageGroup.user1%>
-    <% }%>
-<div >
-<a href="/messages/<%=user._id%>" class="  focus:ring-4 focus:outline-none  bg-gray-800  border-gray-600 hover:bg-gray-700 hover:border-gray-700 focus:ring-gray-700">
-    <li class="py-3 sm:py-4 ">
-        <div class="flex items-center space-x-4 ml-4">
-            <div class="flex-shrink-0">
-                <img class="w-16 h-16 rounded-full" src="<%=user.avatar%>" alt="Neil image">
-            </div>
-            <div class="flex-1 min-w-0">
-                <p class=" text-xl font-medium  text-white">
+            <% if(currentUser.toString() === messageGroup.user1._id.toString()){%>
+                <%user = messageGroup.user2%>
+            <%} else if(currentUser.toString() === messageGroup.user2._id.toString()) {%>
+                <%user = messageGroup.user1%>
+            <% }%>
+        <div >
+        <a href="/messages/<%=user._id%>" class="  focus:ring-4 focus:outline-none  bg-gray-800  border-gray-600 hover:bg-gray-700 hover:border-gray-700 focus:ring-gray-700">
+            <li class="py-3 sm:py-4 ">
+                <div class="flex items-center space-x-4 ml-4">
+                    <div class="flex-shrink-0">
+                        <img class="w-16 h-16 rounded-full" src="<%=user.avatar%>" alt="Profile pic">
+                    </div>
+                    <div class="flex-1 min-w-0">
+                    <p class=" text-xl font-medium  text-white">
                     <%=user.name%>
-                </p>
+                    </p>
                 
-            </div>
+                    </div>
            
-        </div>
-</div>
-</li>
-</a>
-<% }%>
-</ul>
-
-</div>
-   
+                </div>
+                </div>
+            </li>
+        </a>
+        <% }%>
+    </ul>
 
     </div>
+   
+
+</div>
 <%- include('../partials/footer')%>

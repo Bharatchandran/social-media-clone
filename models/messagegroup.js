@@ -15,5 +15,6 @@ const messagegroupSchema = new Schema({
     }
   }, {
     timestamps: true
-  })
-   module.exports = mongoose.model('Messagegroup', messagegroupSchema);
+})
+
+  module.exports = mongoose.model('Messagegroup', messagegroupSchema);

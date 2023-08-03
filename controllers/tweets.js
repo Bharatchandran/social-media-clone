@@ -18,21 +18,16 @@ async function index(req, res) {
     const tweets = await Tweet.find({}).sort({createdAt: -1})
     const users = await User.find({name: req.query.name})
     const like = await Like.find({})
-     
-    
     const avatar = req.user.avatar;
     const view = "index"
     const deleteHref = "/tweets"
-    const redirect = '/tweets'
     const currentUserId = req.user._id
     const editPath = "tweets"
     const formPath = "/tweets"
-    // 
     let getNews = await fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${token}`)
     .then(res=> res.json())
 .then()
 getNews = getNews.articles
-    // 
 
     res.render('tweets/index', {
         tweets,
@@ -104,11 +99,11 @@ async function edit (req, res) {
     const editPath = "tweets"
     const tweetContent = tweet.content
     res.render('tweets/edit',{
+        title: "Edit",
         tweet,
         deleteHref,
         currentUserId,
         view,
-        title: "Edit",
         avatar,
         editPath,
         tweetId,

@@ -11,16 +11,15 @@ async function index (req, res) {
     let currentUserId = req.user._id
     const tweets = await Tweet.find({user: currentUserId}).sort({createdAt: -1})
     const profile = await User.findOne({_id: req.user._id})
-    const deleteHref = "/tweets"
-    const view = "index"
-    const redirect = '/profiles'
-    editPath ="tweet"
+    const deleteHref = "/tweets" // in tweetContainer.ejs the delete path 
+    const view = "index"  // the are two values for view in this project 
+                          // "index" -> if its a tweet "reply" -> if its a reply
+    editPath ="tweet"     // in tweetContainer.ejs the edit path 
     const like = await Like.find({})
-    
     res.render('profiles/index', {
+        title: "My Profile",
         tweets,
         profile,
-        title: "My Profile",
         deleteHref,
         view,
         currentUserId,
@@ -35,19 +34,16 @@ async function show (req, res) {
     const profile = await User.findOne({_id: userId})
     currentUserId = currentUserId.toString();
     const tweets = await Tweet.find({user: userId}).sort({createdAt: -1})
-    const deleteHref = "/tweets"
+    const deleteHref = "/tweets" // in tweetContainer.ejs the delete path 
     const view = "index"
-    editPath ="tweet"
+    editPath ="tweet" // in tweetContainer.ejs the edit path 
     const like = await Like.find({})
-
-
-
     res.render('profiles/show', {
+        title: "Profile",
         tweets,
         userId,
         currentUserId,
         profile,
-        title: "Profile",
         deleteHref,
         view,
         editPath,

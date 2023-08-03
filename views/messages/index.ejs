@@ -4,7 +4,6 @@
 <div class="flow-root">
     <ul role="list" class="divide-y  divide-gray-700">
 <% if(messageGroup) { %>
-    
     <% messageGroup.forEach((message) => {%>
         <% if(message.user1._id.toString() === currentUser.toString() ||message.user2._id.toString() === currentUser.toString() ) { %>
       
@@ -13,7 +12,6 @@
         <%} else if(currentUser.toString() === message.user2._id.toString()) {%>
             <%user = message.user1%>
             <% }%>
-
 <div >
 <a href="/messages/<%=user._id%>" class="  focus:ring-4 focus:outline-none  bg-gray-800  border-gray-600 hover:bg-gray-700 hover:border-gray-700 focus:ring-gray-700">
     <li class="py-3 sm:py-4 ">
@@ -25,17 +23,11 @@
                 <p class=" text-xl font-medium  text-white">
                     <%=user.name%>
                 </p>
-               
             </div>
-           
         </div>
 </div>
 </li>
 </a>
-
-
-        
-        
         <% }%>
         <% })%>
         <% }%>

@@ -10,48 +10,41 @@ module.exports = {
 }
 
 async function index(req, res) {
-    const messageGroup = await MessageGroup.find({}).sort({createdAt : 1}).populate('user1').populate('user2')
-    console.log(messageGroup,"====")
-    let currentUser = req.user._id
-    let user;
-  
-   
-    const formPath = "/messages/find"
+    const messageGroup = await MessageGroup.find({}).sort({createdAt : 1}).populate('user1').populate('user2');
+    let currentUser = req.user._id;
+    let user; // in messages/index.ejs the user to whom you are message is defined 
+    const formPath = "/messages/find"; //gives the path for the form action in search bar.ejs
     res.render('messages/index', {
+        title: "Message",
         messageGroup,
         currentUser,
+        formPath,
         user,
-        title: "Message",
-        formPath
     })
 }
-async function findPeople(req, res) {
-    console.log(req.query.name)
-    let messageGroup = await MessageGroup.find({}).sort({createdAt : 1}).populate('user1').populate('user2')
-    const queryName = req.query.name
 
-    const messageTest = messageGroup.find(el => {
+async function findPeople(req, res) {
+    let messageGroup = await MessageGroup.find({}).sort({createdAt : 1}).populate('user1').populate('user2');
+    const queryName = req.query.name;
+    const findNameInMsgGroup = messageGroup.find(el => { 
         if(el.user1.name === req.query.name && el.user2.name === req.user.name ){
-         return el
+            return el;
         } 
         if(el.user2.name === req.query.name  && el.user1.name === req.user.name){
-            return el
+            return el;
         }
     } )
-    
-    messageGroup = messageTest
+    messageGroup = findNameInMsgGroup
     let currentUser = req.user._id
-    let user;
-    console.log(messageGroup,"====")
-    
+    let user; // in messages/index.ejs the user to whom you are message is defined 
     const formPath = "/messages/find"
     res.render('messages/searchPerson', {
+        title: "Message",
         messageGroup,
         currentUser,
-        user,
-        title: "Message",
+        queryName,
         formPath,
-        queryName
+        user
     })
 }
 
@@ -64,10 +57,10 @@ async function message(req, res) {
     }
     const messages = await Message.find({messageChannel:messageGroup._id}).sort({createdAt:-1}).populate('user')
     res.render('messages/show',{
-        userId,
-        messages,
+        title:"Chat",
         currentUser,
-        title:"Chat"
+        messages,
+        userId
     })
 }
 
@@ -75,21 +68,22 @@ async function message(req, res) {
 async function create (req, res) {
     const currentUser = req.user._id;
     const messageToUser = req.params.id;
-    console.log("Message Create====")
     let messageGroup = await MessageGroup.findOne({user1: currentUser, user2: messageToUser});
+    // If no message group is found with specific users in it new messageGroup is created
     if(!messageGroup){
         messageGroup = await MessageGroup.findOne({user1: messageToUser, user2: currentUser});
-        
     }
     if(!messageGroup){
-        messageGroup = await MessageGroup.create({user1: currentUser, user2: messageToUser})
+        messageGroup = await MessageGroup.create({user1: currentUser, user2: messageToUser});
     } else {
-        req.body.user = currentUser;
-        req.body.messageChannel = messageGroup._id;
-        await Message.create(req.body)
+        // if a message is present create the message
+        if(req.body.message){
+            console.log(req.body.message);
+            req.body.user = currentUser;
+            req.body.messageChannel = messageGroup._id;
+            await Message.create(req.body);
+        }
     }
-   
     res.redirect(`/messages/${messageToUser}`)
-    
 }
 

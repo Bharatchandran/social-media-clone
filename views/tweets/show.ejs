@@ -1,7 +1,6 @@
 <%- include('../partials/header')%>
 <%- include('../partials/singleTweetcontainer')%>
 <div class="relative h-24 mt-6 flex justify-center w-98 flex-col rounded-xl bg-clip-border text-gray-700 shadow-md bg-slate-800 overflow-auto">
-          
     <form class="w-full " action="/reply/<%=tweet._id%>" method="POST">
       <div class="flex items-center  ">
         <div class="ml-6 basis-1/12 ">
@@ -19,7 +18,5 @@
       </div>
  </form>
   </div>
-
 <%- include('../partials/tweetContainer') %>
-
 <%- include('../partials/footer')%>

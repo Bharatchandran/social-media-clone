@@ -1,8 +1,5 @@
 <%- include('../partials/header')%>
 <div class="h-[90vh] flex flex-col justify-end">
-
-
- 
 <% if(messages) { %>
     <div class="overflow-auto flex  flex-col-reverse ">
     <% messages.forEach((message) => {%>
@@ -11,16 +8,12 @@
         <% } else {%>
             <div class="flex items-center justify-start p-4  chat chat-start">
         <% }%>
-        
-           
                 <div class="chat-image avatar">
                   <div class="w-10 rounded-full">
                     <img src="<%=message.user.avatar%>" />
                   </div>
                 </div>
                     <div class="chat-bubble inline-block flex-col max-w-xs  rounded-lg ml-2 "><%=message.message%></div>
-
-              
     </div>
         <% })%>
     </div>

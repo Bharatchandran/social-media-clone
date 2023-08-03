@@ -3,13 +3,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const schemaTemplate = require('./schemaTemplate');
 
-
 const replySchema = new Schema( schemaTemplate )
 let test = {reply:[replySchema]}
 Object.assign(schemaTemplate,test)
-
 const tweetSchema = new Schema(schemaTemplate, {timestamps: true})
-
-
 
 module.exports = mongoose.model('Tweet', tweetSchema);
