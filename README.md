@@ -18,7 +18,10 @@ This is a basic social media platform which has the functionalities such as
 - Javascript 
 - Express
 - Tailwind css 
-- Fly.io (for deploying)
+- MongoDB
+- Mongoose
+- Google OAuth
+- Fly.io (To deploy)
 
 ---
 ### Models Used 
