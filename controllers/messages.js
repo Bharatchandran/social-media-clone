@@ -6,7 +6,8 @@ module.exports = {
     index,
     message,
     create,
-    find: findPeople
+    find: findPeople,
+    // createMessage
 }
 
 async function index(req, res) {
@@ -124,11 +125,33 @@ async function create (req, res) {
     }
     if(!messageGroup){
         messageGroup = await MessageGroup.create({user1: currentUser, user2: messageToUser})
+    } else {
+        req.body.user = currentUser;
+        req.body.messageChannel = messageGroup._id;
+        await Message.create(req.body)
     }
-    req.body.user = currentUser;
-    req.body.messageChannel = messageGroup._id;
-    await Message.create(req.body)
+    // req.body.user = currentUser;
+    // req.body.messageChannel = messageGroup._id;
+    // await Message.create(req.body)
     res.redirect(`/messages/${messageToUser}`)
     //     req.body.user1 = req.user._id
 //     req.body.user2 = req.params.id
 }
+
+// async function createMessage(req, res) {
+//     console.log("test")
+//     let messageGroup = await MessageGroup.findOne({user1: currentUser, user2: messageToUser});
+//     if(!messageGroup){
+//         messageGroup = await MessageGroup.findOne({user1: messageToUser, user2: currentUser});
+        
+//     }
+//     if(!messageGroup){
+//         messageGroup = await MessageGroup.create({user1: currentUser, user2: messageToUser})
+//     }
+//     req.body.user = currentUser;
+//     req.body.messageChannel = messageGroup._id;
+//     const messageToUser = req.params.id;
+//     console.log(messageToUser,"=========")
+//     await Message.create(req.body)
+//     res.redirect(`/messages/${messageToUser}`)
+// }

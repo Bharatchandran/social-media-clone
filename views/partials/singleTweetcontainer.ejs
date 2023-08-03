@@ -1,0 +1,127 @@
+<div
+  class="relative mt-6 flex w-98 flex-col rounded-xl  bg-clip-border text-gray-700 shadow-md bg-slate-800 h-40"
+>
+  <div class="p-6">
+    <div class="flex justify-between">
+      <div class="flex">
+        <img
+          class="mb-2 h-12 w-12 rounded-md inline-block"
+          src="<%=tweet.userAvatar%>"
+          alt=""
+        />
+        <div class="flex flex-col justify-center">
+          <h5
+            class="font-sans text-xl text-white font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased inline-block ml-2"
+          >
+            <%=tweet.userName%>
+          </h5>
+          <h8 class="ml-2 text-gray-400"
+            ><span><%=tweet.createdAt.getDate()%></span>/<span
+              ><%=tweet.createdAt.getMonth() + 1%></span
+            >/<span><%=tweet.createdAt.getFullYear()%></span>
+          </h8>
+        </div>
+      </div>
+
+      <%if(currentUserId.toString() === tweet.user.toString()){%>
+   
+      <div class="justify-self-end items-center">
+        <!-- <h1 class="text-white text-4xl"><%=tweet._id%></h1> -->
+
+        <details class="dropdown ">
+          <summary class="m-1 bg-slate-800 border-none  btn"><span class="material-symbols-outlined">
+            expand_more
+            </span></summary>
+          <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+            <li><a
+              href="/<%=editPath%>/<%=tweet._id%>/edit"
+              class=" px-4 py-2  hover:bg-gray-600 hover:text-white flex justify-between"
+              >Edit  <span class="material-symbols-outlined"> edit </span></a
+            ></li>
+            <li><form
+              action="<%=deleteHref%>/delete/<%=tweet._id%>?_method=DELETE"
+              method="POST"
+            >
+                <button
+                  type="submit"
+                  class=" w-40  hover:bg-gray-600 hover:text-white flex  justify-between "
+                >
+                  Delete
+                  <span class="material-symbols-outlined"> delete </span>
+                </button>
+            </form></li>
+          </ul>
+        </details>
+        
+
+
+       
+      </div>
+      <%}%>
+    </div>
+    <div class="flex flex-col mt-4">
+      <div
+        class="block font-sans text-base text-white font-light leading-relaxed text-inherit antialiased ml-[57px] break-words"
+      >
+        <%=tweet.content%>
+      </div>
+    </div>
+  </div>
+  <%if(view === "index") { %>
+  <div class="p-6 pt-0 ml-[57px] flex justify-end">
+    
+    <form 
+    action="/tweets/like/<%=tweet._id%>" method="POST"
+    class="!font-medium !text-blue-gray-900 !transition-colors hover:!text-pink-500 "
+    
+  > 
+ <div class="flex items-center">
+        <button
+        class="flex justify-end select-none items-center  rounded-lg py-2 px-2 text-center align-middle font-sans text-xs font-bold uppercase text-blue-600 transition-all hover:bg-red-500/10 active:bg-red-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        type="submit"
+        data-ripple-dark="true"
+      >
+     <% const findLike = like.find(el => {%>
+      
+      <%  if(el.user.toString() === currentUserId.toString() && el.tweet.toString() === tweet._id.toString()) return el%>
+      <% });%>
+      <%if(findLike ){%>
+      <svg class="fill-red-700 " xmlns="http://www.w3.org/2000/svg" width="24" height="28" viewBox="0 0 24 24"><path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/></svg>
+    <%} else{%>
+      <svg class=" "  xmlns="http://www.w3.org/2000/svg" width="24" height="28" viewBox="0 0 24 24"><path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/></svg>
+    <%}%>
+    <%let numberOfLikes = 0%>%>
+    <%like.forEach(el=>{%>
+      <%if(el.tweet.toString() === tweet._id.toString()) numberOfLikes+=1;%>
+    <%})%>
+    <%if(findLike ){%>
+    <h1 class="p-2 text-red-700"><%=numberOfLikes%></h1>
+    <%} else{%>
+      <h1 class="p-2 text-white"><%=numberOfLikes%></h1>
+      <%}%>
+      </button>
+    </div>
+      </form>
+    <a
+      class="!font-medium !text-blue-gray-900 !transition-colors hover:!text-blue-500 flex justify-end"
+      href="/tweets/<%=tweet._id%>"
+    > 
+  
+
+
+      <button
+        class="flex justify-end select-none items-center gap-2 rounded-lg py-2 px-2 text-center align-middle font-sans text-xs font-bold uppercase text-blue-500 transition-all hover:bg-blue-500/10 active:bg-blue-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        type="button"
+        data-ripple-dark="true"
+      >
+      <span class="material-symbols-outlined">
+        comment
+        </span>
+        <%let numberOfComments = tweet.reply.length%>
+        <%=numberOfComments%>        
+      </button>
+    </a>
+
+  </div>
+  <% } %>
+</div>
