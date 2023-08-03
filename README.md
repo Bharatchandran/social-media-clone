@@ -26,6 +26,8 @@ This is a basic social media platform which has the functionalities such as
 - Tweet 
 - Message Group
 - Message
+- Likes
+---
 
 ### Future Enhancements
 - Making the code more modular by splitting up the EJS code into components.
@@ -33,4 +35,9 @@ This is a basic social media platform which has the functionalities such as
 - Enhance the UI
 - Arrange the users in message index depending on the time of last message
 - Have notification for the messages
+---
+### Screenshots
+![Home](/ReadmeAssets/Login.png)
+![Login](/ReadmeAssets/Home.png)
+
 
