@@ -23,5 +23,4 @@ async function findPeople(req, res) {
         title: "Search",
         formPath
     })
-    // res.redirect('/tweets')ˀ
 }

@@ -23,41 +23,7 @@
         </div>
       </div>
 
-      <%if(currentUserId.toString() === tweet.user.toString()){%>
-   
-      <div class="justify-self-end items-center">
-        <!-- <h1 class="text-white text-4xl"><%=tweet._id%></h1> -->
-
-        <details class="dropdown ">
-          <summary class="m-1 bg-slate-800 border-none  btn"><span class="material-symbols-outlined">
-            expand_more
-            </span></summary>
-          <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-            <li><a
-              href="/<%=editPath%>/<%=tweet._id%>/edit"
-              class=" px-4 py-2  hover:bg-gray-600 hover:text-white flex justify-between"
-              >Edit  <span class="material-symbols-outlined"> edit </span></a
-            ></li>
-            <li><form
-              action="<%=deleteHref%>/delete/<%=tweet._id%>?_method=DELETE"
-              method="POST"
-            >
-                <button
-                  type="submit"
-                  class=" w-40  hover:bg-gray-600 hover:text-white flex  justify-between "
-                >
-                  Delete
-                  <span class="material-symbols-outlined"> delete </span>
-                </button>
-            </form></li>
-          </ul>
-        </details>
-        
-
-
-       
-      </div>
-      <%}%>
+      
     </div>
     <div class="flex flex-col mt-4">
       <div

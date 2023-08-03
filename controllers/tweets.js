@@ -127,10 +127,8 @@ async function like(req, res) {
     console.log(req.user._id)
     req.body.tweet = req.params.id
     console.log(like,"exist")
-    // console.log(req.body)
     if(!like) {
         await Like.create(req.body)
-        // console.log(like,"test======")
     }
     res.redirect('/tweets')    
 
